@@ -1,0 +1,21 @@
+//Проект БД  для библиотеки.
+
+CREATE DATABASE library;
+USE library;
+
+CREATE TABLE authors (
+  author VARCHAR(30),
+  book_name VARCHAR(50),
+  id INT AUTO_INCREMENT,
+  PRIMARY KEY(id)
+  );
+ALTER TABLE authors
+  ADD COLUMN so_author VARCHAR(50);
+
+//Запрос авторов, написавших менее 7 книг
+SELECT author FROM authors
+GROUP BY author
+HAVING (Count(book_name))>7
+ORDER BY author;
+
+INSERT INTO authors (author, book_name) VALUES ("LN Tolstoi", "Voina i mir");
